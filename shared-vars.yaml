@@ -1,0 +1,3 @@
+aws_region: "us-east-1"
+deploy_repo: "liatrio/dora-deploy-demo-elite"
+app_name: "dora-deploy-demo-elite"

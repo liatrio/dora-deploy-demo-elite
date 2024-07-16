@@ -1,0 +1,13 @@
+# Terragrunt & Terraform
+.terragrunt-cache/
+terragrunt-debug.tfvars.json
+envs/dev/.terraform.lock.hcl
+
+# Local .terraform directories
+.terraform/modules
+.terraform/providers
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
