@@ -11,3 +11,7 @@ envs/dev/.terraform.lock.hcl
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+
+.terraform
+
+Brewfile.lock.json

@@ -1,0 +1,5 @@
+# Brewfile
+brew "opentofu"
+brew "gh"
+brew "terragrunt"
+brew "jq"

@@ -3,10 +3,6 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-variable "deploy_repo" {
-  type    = string
-}
-
-variable "app_name" {
+variable "repo_name" {
   type    = string
 }

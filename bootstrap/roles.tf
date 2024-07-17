@@ -14,8 +14,8 @@ data "aws_iam_policy_document" "trust_policy" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${var.deploy_repo}:ref:refs/heads/main",
-                  "repo:${var.deploy_repo}:environment:dev"]
+      values   = ["repo:liatrio/${var.repo_name}:ref:refs/heads/main",
+                  "repo:liatrio/${var.repo_name}:environment:dev"]
     }
 
     condition {
@@ -27,8 +27,8 @@ data "aws_iam_policy_document" "trust_policy" {
   }
 }
 
-resource "aws_iam_role" "external_dns_gha_role" {
-  name                = "${var.app_name}-oidc-role"
+resource "aws_iam_role" "gha_oidc_role" {
+  name                = "${var.repo_name}-oidc-role"
   assume_role_policy  = data.aws_iam_policy_document.trust_policy.json
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/AdministratorAccess"

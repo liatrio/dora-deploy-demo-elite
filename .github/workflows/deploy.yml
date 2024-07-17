@@ -1,14 +1,15 @@
 name: Terragrunt Lambda Deployment
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - envs/dev/terragrunt.hcl
-      - envs/common-inputs.yaml
-      - envs/dev/vars.yaml
-      - .github/**
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - envs/dev/terragrunt.hcl
+  #     - envs/common-inputs.yaml
+  #     - envs/dev/vars.yaml
+  #     - .github/**
 jobs:
   deploy:
     environment: dev

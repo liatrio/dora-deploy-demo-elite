@@ -2,6 +2,8 @@ include {
   path = find_in_parent_folders()
 }
 
-inputs = {
-    aws_region = "include.root.locals.root_envs.region"
+locals {
+  common_vars = yamldecode(file(find_in_parent_folders("common_vars.yaml")))
 }
+
+inputs = merge(local.common_vars)
