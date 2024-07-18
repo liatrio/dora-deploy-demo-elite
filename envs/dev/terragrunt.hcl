@@ -1,6 +1,6 @@
 
 terraform {
-  source = "github.com/liatrio/dora-lambda-tf-module-demo-elite?ref=v0.2.0"
+  source = "github.com/liatrio/dora-lambda-tf-module-demo-elite?ref=v0.3.0"
 }
 
 include "root" {
