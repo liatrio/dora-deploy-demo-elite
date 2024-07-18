@@ -5,9 +5,12 @@ terraform {
 
 include "root" {
   path   = find_in_parent_folders()
-  expose = true
+}
+
+locals {
+  common_vars = yamldecode(file(find_in_parent_folders("common_vars.yaml")))
 }
 
 inputs = {
-  region = "${include.root.locals.common.aws_region}"
+  region = "${local.common_vars.aws_region}"
 }

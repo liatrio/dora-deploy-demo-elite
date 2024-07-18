@@ -7,7 +7,6 @@ on:
   #     - main
   #   paths:
   #     - envs/dev/terragrunt.hcl
-  #     - envs/common-inputs.yaml
   #     - envs/dev/vars.yaml
   #     - .github/**
 jobs:
@@ -35,7 +34,7 @@ jobs:
         with:
           vault: latest
           jq: latest
-          terraform: latest
+          tofu: latest
           terragrunt: v0.56.5
 
       - name: Terragrunt plan
