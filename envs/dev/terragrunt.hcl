@@ -13,6 +13,6 @@ locals {
 }
 
 inputs = {
-  region = "${local.common_vars.aws_region}"
+  aws_region = "${local.common_vars.aws_region}"
   app_name = "${local.env_vars.env}-${local.common_vars.app_name}"
 }
