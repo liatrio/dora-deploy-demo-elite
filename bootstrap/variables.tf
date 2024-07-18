@@ -6,3 +6,11 @@ variable "aws_region" {
 variable "repo_name" {
   type    = string
 }
+
+# variable "terraform_state_dynamodb_table" {
+#   type = string
+# }
+
+# variable "terraform_state_bucket" {
+#   type = string
+# }
