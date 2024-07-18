@@ -1,10 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "dora-deploy-demo"
+  name: "dora-deploy-demo-elite"
   description: "This repository hosts Terraform example code with Actions to populate DORA metrics."
   annotations:
-    github.com/project-slug: liatrio/dora-deploy-demo
+    github.com/project-slug: liatrio/dora-deploy-demo-elite
 spec:
   type: website
   lifecycle: experimental
