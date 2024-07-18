@@ -9,8 +9,10 @@ include "root" {
 
 locals {
   common_vars = yamldecode(file(find_in_parent_folders("common_vars.yaml")))
+  env_vars = yamldecode(file("vars.yaml"))
 }
 
 inputs = {
   region = "${local.common_vars.aws_region}"
+  app_name = "${local.env_vars.env}-${local.common_vars.app_name}"
 }
