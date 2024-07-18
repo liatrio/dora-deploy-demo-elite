@@ -1,31 +1,18 @@
-terraform {
-  source = "git@github.com:liatrio/dora-lambda-tf-module-demo-elite?ref=main"
-}
 
-locals {
-  env_vars = yamldecode(file("vars.yaml"))
+terraform {
+  source = "github.com/liatrio/dora-lambda-tf-module-demo-elite?ref=main"
 }
 
 include "root" {
   path   = find_in_parent_folders()
-  expose = true
+}
+
+locals {
+  common_vars = yamldecode(file(find_in_parent_folders("common_vars.yaml")))
+  env_vars = yamldecode(file("vars.yaml"))
 }
 
 inputs = {
-  region = "${include.root.locals.common.aws_region}"
+  region = "${local.common_vars.aws_region}"
+  app_name = "${local.env_vars.env}-${local.common_vars.app_name}"
 }
-
-remote_state {
-  backend = "s3"
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite_terragrunt"
-  }
-  config = {
-    bucket  = "${local.env_vars.env}-dora-elite-tfstate"
-    key     = "${path_relative_to_include()}/terraform.tfstate"
-    region  = "${include.root.locals.common.aws_region}"
-    encrypt = true
-  }
-}
-
