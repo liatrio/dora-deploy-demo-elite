@@ -51,3 +51,4 @@ jobs:
           expand-comment: "true"
           hide-previous-comments: "true"
           include-plan-job-summary: "true"
+          show-changed-resources: "false"
