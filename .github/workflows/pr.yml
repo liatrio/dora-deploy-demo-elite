@@ -48,7 +48,6 @@ jobs:
       - uses: jburns24/terraform-change-pr-commenter@main
         with:
           json-file: envs/dev/plan.json
-          expand-comment: "true"
           hide-previous-comments: "true"
           include-plan-job-summary: "true"
           show-changed-resources: "false"
