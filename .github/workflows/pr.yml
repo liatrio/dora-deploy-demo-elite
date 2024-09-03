@@ -45,7 +45,7 @@ jobs:
         continue-on-error: true # Continue on error to ensure the plan is added as a comment on the PR.
         working-directory: envs/dev
 
-      - uses: jburns/terraform-change-pr-commenter@main
+      - uses: jburns24/terraform-change-pr-commenter@main
         with:
           json-file: envs/dev/plan.json
           expand-comment: "true"
