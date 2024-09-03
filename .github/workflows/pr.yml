@@ -50,4 +50,4 @@ jobs:
           json-file: envs/dev/plan.json
           hide-previous-comments: "true"
           include-plan-job-summary: "true"
-          show-changed-resources: "false"
+          log-changed-resources: "false"
