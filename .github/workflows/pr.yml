@@ -39,11 +39,11 @@ jobs:
           tofu_wrapper: false
 
       - name: Create planfile
-        run: terragrunt run-all plan -no-color -out=./.planfile;ls -l;
+        run: terragrunt run-all plan -no-color -out=./.planfile;ls -la;
         working-directory: envs/dev
 
       - name: Convert planfile to JSON planfile
-        run: ls -l;terragrunt show -json ./envs/dev/.planfile >> ./my-planfile.json
+        run: ls -la;terragrunt show -json ./envs/dev/.planfile >> ./my-planfile.json
 
       - name: Create PR comment
         uses: liatrio/terraform-change-pr-commenter@v1.4.0
