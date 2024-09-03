@@ -49,4 +49,5 @@ jobs:
         with:
           json-file: envs/dev/plan.json
           expand-comment: "true"
+          hide-previous-comments: "true"
           include-plan-job-summary: "true"
