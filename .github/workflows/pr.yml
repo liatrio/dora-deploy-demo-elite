@@ -1,6 +1,7 @@
 name: Terragrunt Lambda Deployment Plan
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -34,7 +35,16 @@ jobs:
           tofu: latest
           terragrunt: latest
 
-      - name: Terragrunt plan
+      - name: Terragrunt Plan
+        id: terragrunt_plan
         run: |
-          terragrunt run-all plan
+          pwd
+          terragrunt run-all init --terragrunt-non-interactive
+          terragrunt run-all plan --terragrunt-non-interactive -out plan.out
+          terragrunt show --terragrunt-non-interactive -no-color -json plan.out > plan.json
+        continue-on-error: true # Continue on error to ensure the plan is added as a comment on the PR.
         working-directory: envs/dev
+
+      - uses: liatrio/terraform-change-pr-commenter@v1.5.0
+        with:
+          json-file: envs/dev/plan.json
