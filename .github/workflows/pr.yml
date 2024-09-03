@@ -32,10 +32,24 @@ jobs:
         with:
           vault: latest
           jq: latest
-          tofu: latest
           terragrunt: latest
 
-      - name: Terragrunt plan
-        run: |
-          terragrunt run-all plan
-        working-directory: envs/dev
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_wrapper: false
+
+      - name: Create planfile
+        run: terragrunt plan -no-color -out=./.planfile
+
+      - name: Convert planfile to JSON planfile
+        run: tofu show -json ./.planfile >> ./my-planfile.json
+
+      - name: Create PR comment
+        uses: liatrio/terraform-change-pr-commenter@v1.4.0
+        with:
+          json-file: my-planfile.json
+
+      # - name: Terragrunt plan
+      #   run: |
+      #     terragrunt run-all plan
+      #   working-directory: envs/dev
