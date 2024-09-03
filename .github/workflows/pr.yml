@@ -48,5 +48,6 @@ jobs:
       - uses: DeWildeDaan/terraform-change-summary@main
         with:
           json-file: envs/dev/plan.json
+          hide-previous-comments: true
           expand-comment: "true"
           include-plan-job-summary: "true"
