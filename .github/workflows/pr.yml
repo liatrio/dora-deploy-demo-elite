@@ -48,3 +48,5 @@ jobs:
       - uses: liatrio/terraform-change-pr-commenter@v1.5.0
         with:
           json-file: envs/dev/plan.json
+          expand-comment: "true"
+          include-plan-job-summary: "true"
