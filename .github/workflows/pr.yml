@@ -1,7 +1,6 @@
 name: Terragrunt Lambda Deployment Plan
 
 on:
-  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -32,25 +31,18 @@ jobs:
         with:
           vault: latest
           jq: latest
+          tofu: latest
           terragrunt: latest
 
-      - uses: opentofu/setup-opentofu@v1
+      - name: Terragrunt Plan
+        id: terragrunt_plan
+        run: |
+          pwd
+          terragrunt init --terragrunt-non-interactive
+          terragrunt plan --terragrunt-non-interactive -out plan.out
+          terragrunt show --terragrunt-non-interactive -no-color -json plan.out > plan.json
+        continue-on-error: true # Continue on error to ensure the plan is added as a comment on the PR.
+
+      - uses: liatrio/terraform-change-pr-commenter@v1.5.0
         with:
-          tofu_wrapper: false
-
-      - name: Create planfile
-        run: terragrunt run-all plan -no-color -out=.planfile;ls -la;pwd;
-        working-directory: envs/dev
-
-      - name: Convert planfile to JSON planfile
-        run: ls -la;terragrunt show -json ./envs/dev/.planfile >> ./my-planfile.json
-
-      - name: Create PR comment
-        uses: liatrio/terraform-change-pr-commenter@v1.4.0
-        with:
-          json-file: my-planfile.json
-
-      # - name: Terragrunt plan
-      #   run: |
-      #     terragrunt run-all plan
-      #   working-directory: envs/dev
+          json-file: envs/dev/plan.json
