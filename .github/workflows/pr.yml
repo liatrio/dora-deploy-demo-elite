@@ -38,10 +38,11 @@ jobs:
         id: terragrunt_plan
         run: |
           pwd
-          terragrunt init --terragrunt-non-interactive
-          terragrunt plan --terragrunt-non-interactive -out plan.out
+          terragrunt run-all init --terragrunt-non-interactive
+          terragrunt run-all plan --terragrunt-non-interactive -out plan.out
           terragrunt show --terragrunt-non-interactive -no-color -json plan.out > plan.json
         continue-on-error: true # Continue on error to ensure the plan is added as a comment on the PR.
+        working-directory: envs/dev
 
       - uses: liatrio/terraform-change-pr-commenter@v1.5.0
         with:
