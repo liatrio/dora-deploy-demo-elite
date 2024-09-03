@@ -43,7 +43,7 @@ jobs:
         working-directory: envs/dev
 
       - name: Convert planfile to JSON planfile
-        run: terragrunt show -json .envs/dev/.planfile >> ./my-planfile.json
+        run: terragrunt show -json ./envs/dev/.planfile >> ./my-planfile.json
 
       - name: Create PR comment
         uses: liatrio/terraform-change-pr-commenter@v1.4.0
