@@ -39,7 +39,8 @@ jobs:
           tofu_wrapper: false
 
       - name: Create planfile
-        run: terragrunt plan -no-color -out=./.planfile
+        run: terragrunt run-all plan -no-color -out=./.planfile
+        working-directory: envs/dev
 
       - name: Convert planfile to JSON planfile
         run: tofu show -json ./.planfile >> ./my-planfile.json
