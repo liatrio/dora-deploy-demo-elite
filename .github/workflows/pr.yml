@@ -1,6 +1,7 @@
 name: Terragrunt Lambda Deployment Plan
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
